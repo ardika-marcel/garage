@@ -1272,7 +1272,6 @@ function switchAdminTab(tab, e){
   document.querySelectorAll('.admin-panel-section').forEach(s=>s.classList.remove('active'));
   if(e && e.target) e.target.classList.add('active');
   else {
-    // fallback: find by text
     document.querySelectorAll('.admin-tab').forEach(t=>{
       if(t.textContent.trim().toLowerCase()===tab.toUpperCase()) t.classList.add('active');
     });
@@ -1587,7 +1586,6 @@ function openAdminThread(threadId){
   const body = document.getElementById('admin-chat-body');
   if(body) body.scrollTop = body.scrollHeight;
 
-  // On mobile: hide list, show chat
   if(mobile) showMobileChat();
 }
 
