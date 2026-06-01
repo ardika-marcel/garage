@@ -59,7 +59,7 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .btn-primary:hover{background:var(--orange2);}
 .btn-outline{padding:14px 36px;background:transparent;color:var(--white);border:1px solid var(--gray2);font-family:var(--font-cond);font-size:14px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .btn-outline:hover{border-color:var(--white);color:var(--white);}
-.hero-stats{position:absolute;bottom:60px;right:80px;display:flex;gap:48px;}
+.hero-stats{display:flex;gap:48px;margin-top:48px;}
 .stat-item{text-align:center;}
 .stat-num{font-family:var(--font-display);font-size:48px;color:var(--orange);line-height:1;}
 .stat-label{font-family:var(--font-cond);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:4px;}
@@ -314,19 +314,119 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .footer-bottom{background:var(--black);border-top:1px solid var(--dark3);padding:16px 80px;display:flex;justify-content:space-between;align-items:center;}
 .footer-copy{font-size:12px;color:var(--gray);font-family:var(--font-cond);letter-spacing:1px;}
 
-@media(max-width:900px){
-.section,.cars-header,.news-header,.hist-header,.hist-body,.admin-dashboard{padding:40px 20px;}
-.hero-content{padding:0 20px;}
-.hero-stats{right:20px;bottom:30px;gap:24px;}
-.why-section{grid-template-columns:1fr;padding:60px 20px;gap:40px;}
-.features-grid{grid-template-columns:1fr;}
-.form-row{grid-template-columns:1fr;}
-.messages-inbox{grid-template-columns:1fr;height:auto;}
-.msg-list{height:260px;}
-footer{grid-template-columns:1fr;padding:40px 20px;}
-.footer-bottom{padding:16px 20px;flex-direction:column;gap:8px;text-align:center;}
+/* ===== HAMBURGER MENU ===== */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all 0.3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.99);border-bottom:1px solid var(--dark3);z-index:999;flex-direction:column;padding:8px 0;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-link{padding:14px 24px;font-family:var(--font-cond);font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;text-align:left;border-left:3px solid transparent;transition:all 0.2s;}
+.nav-mobile-link:hover,.nav-mobile-link.active{color:var(--orange);border-left-color:var(--orange);}
+
+@media(max-width:768px){
+/* Nav */
 #main-nav{padding:0 16px;}
-.nav-links .nav-link{padding:8px 8px;font-size:12px;}
+.nav-links{display:none;}
+.nav-admin-btn{display:none;}
+.nav-hamburger{display:flex;}
+.nav-brand{font-size:18px;letter-spacing:2px;}
+.nav-logo-box{width:36px;height:36px;font-size:17px;}
+
+/* Hero */
+.hero{height:auto;min-height:calc(100vh - 64px);padding:60px 0 140px;}
+.hero-content{padding:0 20px;max-width:100%;}
+.hero-title{font-size:clamp(48px,14vw,80px);}
+.hero-sub{font-size:15px;}
+.hero-cta{flex-direction:column;}
+.btn-primary,.btn-outline{width:100%;text-align:center;}
+.hero-stats{position:relative;right:auto;bottom:auto;display:flex;justify-content:space-around;padding:24px 20px;margin-top:32px;background:rgba(0,0,0,0.4);gap:0;}
+.stat-num{font-size:32px;}
+.stat-label{font-size:10px;}
+
+/* Sections */
+.section{padding:48px 20px;}
+.section-title{font-size:clamp(28px,8vw,48px);}
+.features-grid{grid-template-columns:1fr;gap:1px;}
+.feature-card{padding:28px 20px;}
+.why-section{grid-template-columns:1fr;padding:48px 20px;gap:32px;}
+.why-image-placeholder{display:none;}
+
+/* Cars panel */
+.cars-header,.news-header,.hist-header{padding:32px 16px 24px;}
+.cars-header h2,.news-header h2,.hist-header h2{font-size:clamp(28px,8vw,42px);}
+.cars-grid{grid-template-columns:1fr;gap:1px;}
+.car-info{padding:16px;}
+.car-name{font-size:22px;}
+.car-price{font-size:26px;}
+
+/* Car modal */
+.modal-box{width:100%;margin:0;min-height:100vh;border-radius:0;}
+.modal-overlay{align-items:flex-start;}
+.modal-content-inner{padding:20px;}
+.modal-car-name{font-size:32px;}
+.modal-car-price{font-size:26px;}
+.modal-gallery-thumbs{gap:3px;padding:3px;}
+.modal-thumb{width:60px;height:42px;}
+
+/* News */
+.news-grid{grid-template-columns:1fr;gap:1px;}
+.news-card-body{padding:16px;}
+
+/* Article modal */
+.article-inner{padding:20px 16px 60px;}
+.article-title{font-size:clamp(24px,7vw,40px);}
+
+/* Histogram */
+.hist-body{padding:24px 16px;}
+.hist-car-selector{gap:8px;}
+.hist-car-btn{padding:8px 14px;font-size:11px;}
+.hist-chart-area{padding:20px 16px;}
+.hist-bars{gap:8px;height:200px;}
+.hist-bar-group{min-width:40px;}
+.hist-bar{width:32px;}
+.hist-bar-label{font-size:9px;}
+.hist-edit-grid{grid-template-columns:1fr 1fr;}
+
+/* Admin */
+.admin-dashboard{padding:20px 16px;}
+.admin-tabs{overflow-x:auto;gap:0;}
+.admin-tab{padding:12px 14px;font-size:11px;white-space:nowrap;}
+.post-form{padding:20px 16px;}
+.form-row{grid-template-columns:1fr;}
+.admin-list-item{padding:12px;}
+.admin-list-img{width:56px;height:42px;}
+.admin-list-actions{flex-direction:column;gap:4px;}
+.admin-del-btn{font-size:10px;padding:5px 8px;}
+
+/* Messages */
+.messages-inbox{grid-template-columns:1fr;height:auto;}
+.msg-list{height:240px;border-right:none;border-bottom:1px solid var(--dark3);}
+.msg-chat{min-height:400px;}
+.msg-reply-area{flex-wrap:wrap;}
+.msg-reply-input{width:100%;}
+
+/* Contact modal */
+.contact-modal-box{padding:28px 16px;width:95%;margin:auto;}
+.contact-modal-title{font-size:28px;}
+
+/* Admin login */
+.admin-login-box{padding:36px 20px;}
+
+/* Footer */
+footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
+.footer-bottom{padding:16px 20px;flex-direction:column;gap:6px;text-align:center;}
+
+/* Modals */
+.modal-contact-btn{font-size:18px;}
+}
+
+@media(max-width:420px){
+.hero-title{font-size:clamp(40px,13vw,64px);}
+.hist-bar-group{min-width:32px;}
+.hist-bar{width:24px;}
+.hist-bar-label{font-size:8px;}
 }
 </style>
 </head>
@@ -345,7 +445,19 @@ footer{grid-template-columns:1fr;padding:40px 20px;}
     <button class="nav-link" onclick="showPanel('histogram')" id="nav-histogram">PRICING</button>
   </div>
   <button class="nav-admin-btn" onclick="showPanel('admin')">⚙ ADMIN</button>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV MENU -->
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <button class="nav-mobile-link active" id="mnav-home" onclick="showPanel('home');closeMobileMenu()">HOME</button>
+  <button class="nav-mobile-link" id="mnav-cars" onclick="showPanel('cars');closeMobileMenu()">CARS</button>
+  <button class="nav-mobile-link" id="mnav-news" onclick="showPanel('news');closeMobileMenu()">NEWS</button>
+  <button class="nav-mobile-link" id="mnav-histogram" onclick="showPanel('histogram');closeMobileMenu()">PRICING</button>
+  <button class="nav-mobile-link" onclick="showPanel('admin');closeMobileMenu()">⚙ ADMIN</button>
+</div>
 
 <!-- NOTIFICATION -->
 <div class="notif" id="notif"></div>
@@ -363,19 +475,19 @@ footer{grid-template-columns:1fr;padding:40px 20px;}
         <button class="btn-primary" onclick="showPanel('cars')">BROWSE CARS</button>
         <button class="btn-outline" onclick="showPanel('news')">AUTO NEWS</button>
       </div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num" id="stat-cars">0</div>
-        <div class="stat-label">Cars Listed</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Inspected</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">5★</div>
-        <div class="stat-label">Service</div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num" id="stat-cars">0</div>
+          <div class="stat-label">Cars Listed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Inspected</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Service</div>
+        </div>
       </div>
     </div>
   </section>
@@ -710,13 +822,28 @@ function save(){
   localStorage.setItem('ig_hist', JSON.stringify(state.histData));
 }
 
+// ===== MOBILE MENU =====
+function toggleMobileMenu(){
+  const menu = document.getElementById('nav-mobile-menu');
+  const btn = document.getElementById('nav-hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMobileMenu(){
+  document.getElementById('nav-mobile-menu').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+}
+
 // ===== NAVIGATION =====
 function showPanel(name){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.nav-mobile-link').forEach(l=>l.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   const nl = document.getElementById('nav-'+name);
   if(nl) nl.classList.add('active');
+  const mnl = document.getElementById('mnav-'+name);
+  if(mnl) mnl.classList.add('active');
   window.scrollTo(0,0);
   if(name==='home') updateHomeStats();
   if(name==='cars') renderCars();
