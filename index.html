@@ -244,19 +244,19 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 
 .admin-list{display:flex;flex-direction:column;gap:2px;}
 .admin-list-item{background:var(--dark);padding:16px 20px;display:flex;align-items:center;gap:16px;}
-.admin-list-img{width:70px;height:50px;object-fit:cover;background:var(--dark3);}
-.admin-list-info{flex:1;}
+.admin-list-img{width:70px;height:50px;object-fit:cover;background:var(--dark3);flex-shrink:0;}
+.admin-list-info{flex:1;min-width:0;}
 .admin-list-name{font-family:var(--font-cond);font-size:15px;font-weight:600;letter-spacing:1px;}
 .admin-list-meta{font-size:12px;color:var(--gray);margin-top:2px;}
-.admin-list-actions{display:flex;gap:8px;}
+.admin-list-actions{display:flex;gap:8px;flex-shrink:0;}
 .admin-del-btn{padding:6px 14px;background:transparent;border:1px solid #e05050;color:#e05050;font-size:12px;font-family:var(--font-cond);letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
 .admin-del-btn:hover{background:#e05050;color:var(--white);}
 
-/* Messages Panel */
-.messages-inbox{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 64px - 160px);min-height:500px;background:var(--dark);border:1px solid var(--dark3);}
+/* ===== MESSAGES DESKTOP ===== */
+.messages-inbox{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 64px - 200px);min-height:500px;background:var(--dark);border:1px solid var(--dark3);}
 .msg-list{border-right:1px solid var(--dark3);overflow-y:auto;}
 .msg-list-header{padding:16px 20px;border-bottom:1px solid var(--dark3);font-family:var(--font-cond);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);}
-.msg-item{padding:16px 20px;border-bottom:1px solid var(--dark3);cursor:pointer;transition:background 0.15s;}
+.msg-item{padding:16px 20px;border-bottom:1px solid var(--dark3);cursor:pointer;transition:background 0.15s;-webkit-tap-highlight-color:transparent;}
 .msg-item:hover,.msg-item.active{background:var(--dark2);}
 .msg-item-car{font-family:var(--font-cond);font-size:13px;letter-spacing:1px;color:var(--orange);margin-bottom:4px;}
 .msg-item-sender{font-size:14px;font-weight:500;margin-bottom:4px;}
@@ -277,9 +277,12 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .msg-reply-area{padding:16px 24px;border-top:1px solid var(--dark3);display:flex;gap:12px;}
 .msg-reply-input{flex:1;background:var(--dark2);border:1px solid var(--dark4);color:var(--white);padding:10px 14px;font-size:14px;font-family:var(--font-body);resize:none;}
 .msg-reply-input:focus{outline:none;border-color:var(--orange);}
-.msg-reply-send{padding:10px 20px;background:var(--orange);border:none;color:var(--black);font-family:var(--font-cond);font-size:12px;letter-spacing:2px;cursor:pointer;font-weight:700;}
+.msg-reply-send{padding:10px 20px;background:var(--orange);border:none;color:var(--black);font-family:var(--font-cond);font-size:12px;letter-spacing:2px;cursor:pointer;font-weight:700;white-space:nowrap;}
 .msg-reply-send:hover{background:var(--orange2);}
 .msg-empty-chat{flex:1;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:14px;}
+
+/* ===== MOBILE MESSAGES - full screen conversation view ===== */
+.mobile-msg-back{display:none;}
 
 /* Contact Modal (public) */
 .contact-modal{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.95);overflow-y:auto;}
@@ -294,7 +297,6 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 /* Thread view for public */
 .thread-view{display:none;}
 .thread-view.open{display:flex;flex-direction:column;height:calc(100vh - 300px);min-height:400px;}
-.thread-messages{flex:1;overflow-y:auto;padding:20px 0;display:flex;flex-direction:column;gap:12px;}
 .send-form{display:block;}
 
 /* Notification */
@@ -325,7 +327,11 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .nav-mobile-link{padding:14px 24px;font-family:var(--font-cond);font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;text-align:left;border-left:3px solid transparent;transition:all 0.2s;}
 .nav-mobile-link:hover,.nav-mobile-link.active{color:var(--orange);border-left-color:var(--orange);}
 
+/* ================================================================
+   MOBILE STYLES
+   ================================================================ */
 @media(max-width:768px){
+
 /* Nav */
 #main-nav{padding:0 16px;}
 .nav-links{display:none;}
@@ -335,13 +341,13 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .nav-logo-box{width:36px;height:36px;font-size:17px;}
 
 /* Hero */
-.hero{height:auto;min-height:calc(100vh - 64px);padding:60px 0 140px;}
+.hero{height:auto;min-height:calc(100vh - 64px);padding:60px 0 80px;}
 .hero-content{padding:0 20px;max-width:100%;}
 .hero-title{font-size:clamp(48px,14vw,80px);}
 .hero-sub{font-size:15px;}
 .hero-cta{flex-direction:column;}
-.btn-primary,.btn-outline{width:100%;text-align:center;}
-.hero-stats{position:relative;right:auto;bottom:auto;display:flex;justify-content:space-around;padding:24px 20px;margin-top:32px;background:rgba(0,0,0,0.4);gap:0;}
+.btn-primary,.btn-outline{width:100%;text-align:center;padding:16px;}
+.hero-stats{display:flex;justify-content:space-around;padding:24px 20px;margin-top:32px;background:rgba(0,0,0,0.4);gap:0;}
 .stat-num{font-size:32px;}
 .stat-label{font-size:10px;}
 
@@ -360,6 +366,8 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .car-info{padding:16px;}
 .car-name{font-size:22px;}
 .car-price{font-size:26px;}
+.car-footer{gap:8px;}
+.btn-detail,.btn-contact-car{padding:12px 8px;font-size:11px;}
 
 /* Car modal */
 .modal-box{width:100%;margin:0;min-height:100vh;border-radius:0;}
@@ -369,6 +377,7 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .modal-car-price{font-size:26px;}
 .modal-gallery-thumbs{gap:3px;padding:3px;}
 .modal-thumb{width:60px;height:42px;}
+.modal-contact-btn{font-size:18px;padding:16px;}
 
 /* News */
 .news-grid{grid-template-columns:1fr;gap:1px;}
@@ -390,26 +399,105 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .hist-edit-grid{grid-template-columns:1fr 1fr;}
 
 /* Admin */
-.admin-dashboard{padding:20px 16px;}
-.admin-tabs{overflow-x:auto;gap:0;}
+.admin-dashboard{padding:16px;}
+.admin-tabs{overflow-x:auto;gap:0;-webkit-overflow-scrolling:touch;}
 .admin-tab{padding:12px 14px;font-size:11px;white-space:nowrap;}
 .post-form{padding:20px 16px;}
 .form-row{grid-template-columns:1fr;}
-.admin-list-item{padding:12px;}
+.admin-list-item{padding:12px;flex-wrap:wrap;gap:10px;}
 .admin-list-img{width:56px;height:42px;}
-.admin-list-actions{flex-direction:column;gap:4px;}
-.admin-del-btn{font-size:10px;padding:5px 8px;}
+.admin-list-info{flex:1;min-width:0;}
+.admin-list-name{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.admin-list-actions{width:100%;display:flex;gap:8px;justify-content:flex-end;}
+.admin-del-btn{font-size:11px;padding:8px 14px;}
+.admin-section-header{flex-wrap:wrap;gap:12px;}
+.admin-section-title{font-size:24px;}
 
-/* Messages */
-.messages-inbox{grid-template-columns:1fr;height:auto;}
-.msg-list{height:240px;border-right:none;border-bottom:1px solid var(--dark3);}
-.msg-chat{min-height:400px;}
-.msg-reply-area{flex-wrap:wrap;}
-.msg-reply-input{width:100%;}
+/* ===== MOBILE MESSAGES — full-screen conversation UX ===== */
+.messages-inbox{
+  display:block;
+  height:auto;
+  min-height:0;
+  border:none;
+  background:transparent;
+}
+
+/* List view: visible by default on mobile */
+.msg-list{
+  height:auto;
+  min-height:0;
+  max-height:none;
+  border-right:none;
+  border:1px solid var(--dark3);
+  background:var(--dark);
+  margin-bottom:2px;
+}
+
+/* Chat panel: hidden on mobile until a thread is selected */
+.msg-chat{
+  display:none;
+  min-height:0;
+  border:1px solid var(--dark3);
+  background:var(--dark);
+}
+.msg-chat.mobile-visible{
+  display:flex;
+  flex-direction:column;
+  min-height:calc(100vh - 64px - 120px);
+}
+
+/* Back button shown only on mobile */
+.mobile-msg-back{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 16px;
+  background:var(--dark2);
+  border:none;
+  border-bottom:1px solid var(--dark3);
+  color:var(--orange);
+  font-family:var(--font-cond);
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+  width:100%;
+  text-align:left;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Larger touch targets for message items */
+.msg-item{
+  padding:18px 16px;
+  min-height:72px;
+}
+.msg-item-sender{font-size:15px;}
+
+/* Chat body sizing on mobile */
+.msg-chat.mobile-visible .msg-chat-body{
+  min-height:300px;
+  max-height:50vh;
+}
+
+/* Reply area stacked on mobile */
+.msg-reply-area{
+  flex-direction:column;
+  padding:12px 16px;
+  gap:10px;
+}
+.msg-reply-input{width:100%;min-height:64px;}
+.msg-reply-send{width:100%;padding:14px;}
+
+/* Messages Panel */
+.msg-chat-header{padding:14px 16px;}
+.msg-chat-car-name{font-size:18px;}
+.msg-chat-body{padding:16px;}
 
 /* Contact modal */
-.contact-modal-box{padding:28px 16px;width:95%;margin:auto;}
+.contact-modal{align-items:flex-end;}
+.contact-modal-box{padding:28px 16px 32px;width:100%;margin:0;max-width:100%;border-radius:12px 12px 0 0;}
 .contact-modal-title{font-size:28px;}
+.thread-view.open{height:calc(100vh - 380px);min-height:240px;}
 
 /* Admin login */
 .admin-login-box{padding:36px 20px;}
@@ -418,8 +506,8 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 .footer-bottom{padding:16px 20px;flex-direction:column;gap:6px;text-align:center;}
 
-/* Modals */
-.modal-contact-btn{font-size:18px;}
+/* Notification - bottom center on mobile */
+.notif{left:16px;right:16px;bottom:16px;text-align:center;}
 }
 
 @media(max-width:420px){
@@ -427,6 +515,7 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 .hist-bar-group{min-width:32px;}
 .hist-bar{width:24px;}
 .hist-bar-label{font-size:8px;}
+.admin-dashboard{padding:12px;}
 }
 </style>
 </head>
@@ -628,16 +717,16 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 
   <!-- Dashboard -->
   <div class="admin-dashboard" id="admin-dashboard-view">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
       <h2 style="font-family:var(--font-display);font-size:40px;letter-spacing:3px;">ADMIN DASHBOARD</h2>
       <button onclick="adminLogout()" style="padding:8px 20px;background:transparent;border:1px solid var(--dark4);color:var(--gray);font-family:var(--font-cond);font-size:12px;letter-spacing:2px;cursor:pointer;">LOGOUT</button>
     </div>
 
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('cars')">CARS</button>
-      <button class="admin-tab" onclick="switchAdminTab('news')">NEWS</button>
-      <button class="admin-tab" onclick="switchAdminTab('messages')">MESSAGES</button>
-      <button class="admin-tab" onclick="switchAdminTab('histogram')">HISTOGRAM</button>
+      <button class="admin-tab active" onclick="switchAdminTab('cars',event)">CARS</button>
+      <button class="admin-tab" onclick="switchAdminTab('news',event)">NEWS</button>
+      <button class="admin-tab" onclick="switchAdminTab('messages',event)">MESSAGES</button>
+      <button class="admin-tab" onclick="switchAdminTab('histogram',event)">HISTOGRAM</button>
     </div>
 
     <!-- Cars Admin -->
@@ -753,8 +842,8 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <div class="admin-section-header">
         <div class="admin-section-title">Inbox</div>
       </div>
-      <div class="messages-inbox">
-        <div class="msg-list">
+      <div class="messages-inbox" id="messages-inbox">
+        <div class="msg-list" id="msg-list-panel">
           <div class="msg-list-header">CONVERSATIONS</div>
           <div id="admin-msg-list"></div>
         </div>
@@ -790,9 +879,9 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
     <!-- Thread view (after sending) -->
     <div class="thread-view" id="contact-thread-view">
       <div class="thread-messages" id="contact-thread-messages"></div>
-      <div style="display:flex;gap:10px;margin-top:12px;">
-        <textarea class="form-textarea msg-reply-input" id="contact-reply-input" rows="2" placeholder="Type your reply..."></textarea>
-        <button class="msg-reply-send" onclick="sendContactReply()">SEND</button>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+        <textarea class="form-textarea msg-reply-input" id="contact-reply-input" rows="2" placeholder="Type your reply..." style="flex:1;min-width:0;"></textarea>
+        <button class="msg-reply-send" onclick="sendContactReply()" style="flex-shrink:0;">SEND</button>
       </div>
     </div>
   </div>
@@ -814,6 +903,8 @@ let currentContactCar = null;
 let currentContactThreadId = null;
 let currentAdminThread = null;
 let adminLoggedIn = false;
+
+function isMobile(){ return window.innerWidth <= 768; }
 
 function save(){
   localStorage.setItem('ig_cars', JSON.stringify(state.cars));
@@ -958,7 +1049,6 @@ function openContact(carId){
   document.getElementById('contact-car-label').textContent = car ? `Enquiring about: ${car.name}` : '';
   document.getElementById('contact-status').style.display='none';
 
-  // Check if there's already a thread for this car from this session
   const existingThread = state.messages.find(m=>m.carId===carId && m.sessionId===getSessionId());
   if(existingThread){
     currentContactThreadId = existingThread.id;
@@ -1096,12 +1186,10 @@ function renderHistogram(){
     return;
   }
 
-  // Build selector
   selector.innerHTML = state.cars.map((car,i)=>`
     <button class="hist-car-btn ${i===0?'active':''}" onclick="selectHistCar(this,'${car.id}')">${car.name}</button>
   `).join('');
 
-  // Show first car by default
   showHistCar(state.cars[0].id);
 }
 
@@ -1115,10 +1203,7 @@ function showHistCar(carId){
   const car = state.cars.find(c=>c.id===carId);
   if(!car) return;
 
-  // Get or create hist data for this car
   if(!state.histData[carId]){
-    // Default ranges based on price
-    const basePrice = parseInt((car.price||'').replace(/\D/g,''))||100000000;
     state.histData[carId] = {
       ranges: [
         {label:'< Rp 50jt', count:0},
@@ -1158,17 +1243,6 @@ function showHistCar(carId){
   `;
 }
 
-function saveHistData(carId){
-  const data = state.histData[carId];
-  data.ranges.forEach((r,i)=>{
-    const val = parseInt(document.getElementById(`hist-range-${carId}-${i}`).value)||0;
-    r.count = val;
-  });
-  save();
-  showHistCar(carId);
-  notify('Histogram updated!');
-}
-
 // ===== ADMIN =====
 function adminLogin(){
   const pass = document.getElementById('admin-pass-input').value;
@@ -1193,13 +1267,46 @@ function adminLogout(){
   document.getElementById('admin-err').style.display='none';
 }
 
-function switchAdminTab(tab){
+function switchAdminTab(tab, e){
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.admin-panel-section').forEach(s=>s.classList.remove('active'));
-  event.target.classList.add('active');
+  if(e && e.target) e.target.classList.add('active');
+  else {
+    // fallback: find by text
+    document.querySelectorAll('.admin-tab').forEach(t=>{
+      if(t.textContent.trim().toLowerCase()===tab.toUpperCase()) t.classList.add('active');
+    });
+  }
   document.getElementById('admin-tab-'+tab).classList.add('active');
-  if(tab==='messages') renderAdminMessages();
+  if(tab==='messages'){ renderAdminMessages(); resetMobileMessageView(); }
   if(tab==='histogram') renderAdminHistogram();
+}
+
+// ===== MOBILE MESSAGES NAVIGATION =====
+function resetMobileMessageView(){
+  if(!isMobile()) return;
+  const chatView = document.getElementById('admin-chat-view');
+  const listPanel = document.getElementById('msg-list-panel');
+  chatView.classList.remove('mobile-visible');
+  listPanel.style.display = '';
+}
+
+function showMobileChat(){
+  if(!isMobile()) return;
+  const chatView = document.getElementById('admin-chat-view');
+  const listPanel = document.getElementById('msg-list-panel');
+  listPanel.style.display = 'none';
+  chatView.classList.add('mobile-visible');
+  window.scrollTo(0, chatView.offsetTop - 80);
+}
+
+function backToMsgList(){
+  const chatView = document.getElementById('admin-chat-view');
+  const listPanel = document.getElementById('msg-list-panel');
+  chatView.classList.remove('mobile-visible');
+  listPanel.style.display = '';
+  currentAdminThread = null;
+  renderAdminMessages();
 }
 
 // Cars Admin
@@ -1212,7 +1319,6 @@ function toggleCarForm(carId){
   document.getElementById('car-photo-previews').innerHTML='';
   document.getElementById('car-photo-count').textContent='';
   if(carId){
-    // Edit mode: pre-fill
     editingCarId = carId;
     const car = state.cars.find(c=>c.id===carId);
     document.getElementById('cf-name').value = car.name||'';
@@ -1276,7 +1382,6 @@ function saveCar(){
   if(carPhotosData.length < 2){ notify('Please upload at least 2 photos'); return; }
 
   if(editingCarId){
-    // Update existing car
     const car = state.cars.find(c=>c.id===editingCarId);
     Object.assign(car,{name,year,price,category,desc,history,photos:carPhotosData.slice()});
     save();
@@ -1285,7 +1390,6 @@ function saveCar(){
     renderAdminCars();
     notify('Car listing updated!');
   } else {
-    // New car
     const car = {
       id:'car_'+Date.now(),
       name,year,price,category,desc,history,
@@ -1319,10 +1423,10 @@ function renderAdminCars(){
   }
   list.innerHTML = state.cars.map(car=>`
     <div class="admin-list-item">
-      ${car.photos && car.photos.length ? `<img class="admin-list-img" src="${car.photos[0]}" alt="${car.name}">` : `<div class="admin-list-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0.3">🚗</div>`}
+      ${car.photos && car.photos.length ? `<img class="admin-list-img" src="${car.photos[0]}" alt="${car.name}">` : `<div class="admin-list-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0.3;flex-shrink:0;">🚗</div>`}
       <div class="admin-list-info">
         <div class="admin-list-name">${car.name}</div>
-        <div class="admin-list-meta">Rp ${car.price} · ${car.year||'N/A'} · ${car.photos?car.photos.length:0} photos · ${formatDate(car.createdAt)}</div>
+        <div class="admin-list-meta">Rp ${car.price} · ${car.year||'N/A'} · ${car.photos?car.photos.length:0} photos</div>
       </div>
       <div class="admin-list-actions">
         <button class="admin-del-btn" style="border-color:var(--orange);color:var(--orange);" onclick="toggleCarForm('${car.id}')">EDIT</button>
@@ -1409,7 +1513,7 @@ function renderAdminNews(){
   }
   list.innerHTML = state.news.map(a=>`
     <div class="admin-list-item">
-      ${a.photos && a.photos.length ? `<img class="admin-list-img" src="${a.photos[0]}" alt="${a.title}">` : `<div class="admin-list-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0.3">📰</div>`}
+      ${a.photos && a.photos.length ? `<img class="admin-list-img" src="${a.photos[0]}" alt="${a.title}">` : `<div class="admin-list-img" style="display:flex;align-items:center;justify-content:center;font-size:24px;opacity:0.3;flex-shrink:0;">📰</div>`}
       <div class="admin-list-info">
         <div class="admin-list-name">${a.title}</div>
         <div class="admin-list-meta">${a.category||'Uncategorized'} · ${formatDate(a.createdAt)}</div>
@@ -1455,8 +1559,11 @@ function openAdminThread(threadId){
   save();
   renderAdminMessages();
 
+  const mobile = isMobile();
   const chatView = document.getElementById('admin-chat-view');
+
   chatView.innerHTML = `
+    ${mobile ? `<button class="mobile-msg-back" onclick="backToMsgList()">← Back to conversations</button>` : ''}
     <div class="msg-chat-header">
       <div class="msg-chat-car-name">${thread.carName||'General Enquiry'}</div>
       <div class="msg-chat-sender-info">From: ${thread.senderName} · ${formatDate(thread.createdAt)}</div>
@@ -1476,8 +1583,12 @@ function openAdminThread(threadId){
       <button class="msg-reply-send" onclick="sendAdminReply('${threadId}')">SEND</button>
     </div>
   `;
+
   const body = document.getElementById('admin-chat-body');
   if(body) body.scrollTop = body.scrollHeight;
+
+  // On mobile: hide list, show chat
+  if(mobile) showMobileChat();
 }
 
 function sendAdminReply(threadId){
@@ -1489,7 +1600,6 @@ function sendAdminReply(threadId){
   thread.messages.push({from:'admin',text,time:new Date().toISOString()});
   save();
   openAdminThread(threadId);
-  // Also update public contact thread if open
   if(currentContactThreadId === threadId){
     renderContactThread(thread);
   }
@@ -1617,6 +1727,16 @@ document.getElementById('car-modal').addEventListener('click', function(e){
 });
 document.getElementById('contact-modal').addEventListener('click', function(e){
   if(e.target===this) closeContact();
+});
+
+// Reset mobile message view on resize
+window.addEventListener('resize', function(){
+  if(!isMobile()){
+    const chatView = document.getElementById('admin-chat-view');
+    const listPanel = document.getElementById('msg-list-panel');
+    chatView.classList.remove('mobile-visible');
+    listPanel.style.display = '';
+  }
 });
 
 // Init
