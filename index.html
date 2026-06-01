@@ -1,4 +1,7 @@
+Here is the HTML code that fixes the cropped car photos in the modal without changing any other functionality or design.
+```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -27,6 +30,8 @@
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden;}
 
+
+
 /* NAV */
 #main-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.97);border-bottom:1px solid var(--dark3);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;}
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
@@ -40,9 +45,13 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .nav-admin-btn{padding:8px 18px;background:transparent;border:1px solid var(--orange);color:var(--orange);font-family:var(--font-cond);font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .nav-admin-btn:hover{background:var(--orange);color:var(--black);}
 
+
+
 /* PANELS */
 .panel{display:none;min-height:100vh;padding-top:64px;}
 .panel.active{display:block;}
+
+
 
 /* ===== PANEL 1: HOME ===== */
 #panel-home{background:var(--black);}
@@ -64,10 +73,14 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .stat-num{font-family:var(--font-display);font-size:48px;color:var(--orange);line-height:1;}
 .stat-label{font-family:var(--font-cond);font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:4px;}
 
+
+
 .section{padding:100px 80px;}
 .section-tag{font-family:var(--font-cond);font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
 .section-title{font-family:var(--font-display);font-size:clamp(36px,5vw,64px);letter-spacing:2px;margin-bottom:24px;}
 .section-body{font-size:16px;color:var(--gray);line-height:1.8;max-width:700px;font-weight:300;}
+
+
 
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;background:var(--dark3);}
 .feature-card{background:var(--dark);padding:40px;transition:background 0.2s;}
@@ -75,6 +88,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .feature-icon{font-size:32px;margin-bottom:20px;}
 .feature-title{font-family:var(--font-cond);font-size:20px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;color:var(--white);}
 .feature-desc{font-size:14px;color:var(--gray);line-height:1.7;}
+
+
 
 .why-section{background:var(--dark2);padding:100px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
 .why-image-placeholder{aspect-ratio:4/3;background:var(--dark3);border:1px solid var(--dark4);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;}
@@ -84,6 +99,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .why-item{display:flex;align-items:flex-start;gap:16px;}
 .why-dot{width:8px;height:8px;background:var(--orange);margin-top:6px;flex-shrink:0;}
 .why-item-text{font-size:15px;color:var(--gray);line-height:1.6;}
+
+
 
 /* ===== PANEL 2: CARS ===== */
 #panel-cars{background:var(--black);}
@@ -108,20 +125,25 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .btn-contact-car{flex:1;padding:10px;background:var(--orange);border:none;color:var(--black);font-family:var(--font-cond);font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700;transition:all 0.2s;}
 .btn-contact-car:hover{background:var(--orange2);}
 
+
+
 .empty-state{padding:120px 40px;text-align:center;width:100%;}
 .empty-state-icon{font-size:64px;opacity:0.2;margin-bottom:20px;}
 .empty-state-title{font-family:var(--font-display);font-size:32px;letter-spacing:2px;color:var(--gray2);margin-bottom:8px;}
 .empty-state-sub{font-size:14px;color:var(--gray2);}
 
-/* Car Detail Modal */
+
+
+/* Car Detail Modal - FIXED cropping issue */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.92);overflow-y:auto;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:var(--dark);width:90%;max-width:900px;margin:40px auto;position:relative;}
 .modal-close{position:sticky;top:0;left:100%;width:44px;height:44px;background:var(--dark3);border:none;color:var(--white);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;float:right;}
 .modal-close:hover{background:var(--orange);color:var(--black);}
 .modal-gallery{position:relative;background:var(--black);}
-.modal-gallery-main{aspect-ratio:16/9;overflow:hidden;}
-.modal-gallery-main img{width:100%;height:100%;object-fit:cover;}
+/* Fix main gallery image to show full image without cropping */
+.modal-gallery-main{aspect-ratio:16/9;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--black);}
+.modal-gallery-main img{width:100%;height:100%;object-fit:contain; /* Changed from cover to contain to prevent cropping */ object-position:center;}
 .modal-gallery-thumbs{display:flex;gap:4px;padding:4px;background:var(--dark2);overflow-x:auto;}
 .modal-thumb{width:80px;height:54px;object-fit:cover;cursor:pointer;opacity:0.5;transition:opacity 0.2s;flex-shrink:0;border:2px solid transparent;}
 .modal-thumb.active{opacity:1;border-color:var(--orange);}
@@ -136,6 +158,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .modal-text{font-size:15px;color:var(--gray);line-height:1.8;}
 .modal-contact-btn{margin-top:32px;width:100%;padding:16px;background:var(--orange);border:none;color:var(--black);font-family:var(--font-display);font-size:22px;letter-spacing:3px;cursor:pointer;transition:background 0.2s;}
 .modal-contact-btn:hover{background:var(--orange2);}
+
+
 
 /* ===== PANEL 3: NEWS ===== */
 #panel-news{background:var(--black);}
@@ -152,6 +176,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .news-excerpt{font-size:13px;color:var(--gray);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px;}
 .news-meta{font-size:12px;color:var(--gray2);font-family:var(--font-cond);letter-spacing:1px;}
 
+
+
 /* News Article Modal */
 .article-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.95);overflow-y:auto;}
 .article-modal.open{display:block;}
@@ -166,6 +192,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .article-body{font-size:16px;color:var(--white2);line-height:1.9;font-weight:300;}
 .article-body p{margin-bottom:20px;}
 .article-body img{width:100%;margin:32px 0;}
+
+
 
 /* ===== PANEL 4: HISTOGRAM ===== */
 #panel-histogram{background:var(--black);}
@@ -194,6 +222,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .hist-save-btn:hover{background:var(--orange2);}
 .hist-empty{text-align:center;padding:80px 40px;color:var(--gray);}
 
+
+
 /* ===== ADMIN PANEL ===== */
 #panel-admin{background:var(--black);}
 .admin-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 64px);padding:40px;}
@@ -210,6 +240,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .admin-login-btn:hover{background:var(--orange2);}
 .admin-login-err{font-size:13px;color:#e05050;text-align:center;margin-top:12px;display:none;}
 
+
+
 .admin-dashboard{display:none;padding:40px 80px;}
 .admin-dashboard.visible{display:block;}
 .admin-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--dark3);}
@@ -221,6 +253,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .admin-tab.active{color:var(--orange);border-bottom-color:var(--orange);}
 .admin-panel-section{display:none;}
 .admin-panel-section.active{display:block;}
+
+
 
 /* Post Form */
 .post-form{background:var(--dark);border:1px solid var(--dark3);padding:40px;margin-bottom:40px;display:none;}
@@ -242,6 +276,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .btn-save{padding:10px 28px;background:var(--orange);border:none;color:var(--black);font-family:var(--font-cond);font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:700;}
 .btn-save:hover{background:var(--orange2);}
 
+
+
 .admin-list{display:flex;flex-direction:column;gap:2px;}
 .admin-list-item{background:var(--dark);padding:16px 20px;display:flex;align-items:center;gap:16px;}
 .admin-list-img{width:70px;height:50px;object-fit:cover;background:var(--dark3);flex-shrink:0;}
@@ -251,6 +287,8 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .admin-list-actions{display:flex;gap:8px;flex-shrink:0;}
 .admin-del-btn{padding:6px 14px;background:transparent;border:1px solid #e05050;color:#e05050;font-size:12px;font-family:var(--font-cond);letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
 .admin-del-btn:hover{background:#e05050;color:var(--white);}
+
+
 
 /* ===== MESSAGES DESKTOP ===== */
 .messages-inbox{display:grid;grid-template-columns:320px 1fr;height:calc(100vh - 64px - 200px);min-height:500px;background:var(--dark);border:1px solid var(--dark3);}
@@ -281,8 +319,12 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .msg-reply-send:hover{background:var(--orange2);}
 .msg-empty-chat{flex:1;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:14px;}
 
+
+
 /* ===== MOBILE MESSAGES - full screen conversation view ===== */
 .mobile-msg-back{display:none;}
+
+
 
 /* Contact Modal (public) */
 .contact-modal{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.95);overflow-y:auto;}
@@ -294,14 +336,20 @@ body{background:var(--black);color:var(--white);font-family:var(--font-body);ove
 .contact-modal-car{font-family:var(--font-cond);font-size:13px;letter-spacing:2px;color:var(--orange);margin-bottom:28px;}
 .contact-status{padding:12px;background:var(--dark2);border-left:3px solid var(--orange);font-size:14px;color:var(--white);margin-bottom:20px;display:none;}
 
+
+
 /* Thread view for public */
 .thread-view{display:none;}
 .thread-view.open{display:flex;flex-direction:column;height:calc(100vh - 300px);min-height:400px;}
 .send-form{display:block;}
 
+
+
 /* Notification */
 .notif{position:fixed;bottom:30px;right:30px;background:var(--orange);color:var(--black);padding:14px 24px;font-family:var(--font-cond);font-size:13px;letter-spacing:2px;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;}
 .notif.show{transform:translateY(0);opacity:1;}
+
+
 
 /* Misc */
 .section-divider{height:1px;background:var(--dark3);margin:0 80px;}
@@ -316,6 +364,8 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .footer-bottom{background:var(--black);border-top:1px solid var(--dark3);padding:16px 80px;display:flex;justify-content:space-between;align-items:center;}
 .footer-copy{font-size:12px;color:var(--gray);font-family:var(--font-cond);letter-spacing:1px;}
 
+
+
 /* ===== HAMBURGER MENU ===== */
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all 0.3s;}
@@ -327,20 +377,13 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .nav-mobile-link{padding:14px 24px;font-family:var(--font-cond);font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;text-align:left;border-left:3px solid transparent;transition:all 0.2s;}
 .nav-mobile-link:hover,.nav-mobile-link.active{color:var(--orange);border-left-color:var(--orange);}
 
-/* ================================================================
-   MOBILE STYLES
-   ================================================================ */
 @media(max-width:768px){
-
-/* Nav */
 #main-nav{padding:0 16px;}
 .nav-links{display:none;}
 .nav-admin-btn{display:none;}
 .nav-hamburger{display:flex;}
 .nav-brand{font-size:18px;letter-spacing:2px;}
 .nav-logo-box{width:36px;height:36px;font-size:17px;}
-
-/* Hero */
 .hero{height:auto;min-height:calc(100vh - 64px);padding:60px 0 80px;}
 .hero-content{padding:0 20px;max-width:100%;}
 .hero-title{font-size:clamp(48px,14vw,80px);}
@@ -350,16 +393,12 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .hero-stats{display:flex;justify-content:space-around;padding:24px 20px;margin-top:32px;background:rgba(0,0,0,0.4);gap:0;}
 .stat-num{font-size:32px;}
 .stat-label{font-size:10px;}
-
-/* Sections */
 .section{padding:48px 20px;}
 .section-title{font-size:clamp(28px,8vw,48px);}
 .features-grid{grid-template-columns:1fr;gap:1px;}
 .feature-card{padding:28px 20px;}
 .why-section{grid-template-columns:1fr;padding:48px 20px;gap:32px;}
 .why-image-placeholder{display:none;}
-
-/* Cars panel */
 .cars-header,.news-header,.hist-header{padding:32px 16px 24px;}
 .cars-header h2,.news-header h2,.hist-header h2{font-size:clamp(28px,8vw,42px);}
 .cars-grid{grid-template-columns:1fr;gap:1px;}
@@ -368,8 +407,6 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .car-price{font-size:26px;}
 .car-footer{gap:8px;}
 .btn-detail,.btn-contact-car{padding:12px 8px;font-size:11px;}
-
-/* Car modal */
 .modal-box{width:100%;margin:0;min-height:100vh;border-radius:0;}
 .modal-overlay{align-items:flex-start;}
 .modal-content-inner{padding:20px;}
@@ -378,16 +415,10 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .modal-gallery-thumbs{gap:3px;padding:3px;}
 .modal-thumb{width:60px;height:42px;}
 .modal-contact-btn{font-size:18px;padding:16px;}
-
-/* News */
 .news-grid{grid-template-columns:1fr;gap:1px;}
 .news-card-body{padding:16px;}
-
-/* Article modal */
 .article-inner{padding:20px 16px 60px;}
 .article-title{font-size:clamp(24px,7vw,40px);}
-
-/* Histogram */
 .hist-body{padding:24px 16px;}
 .hist-car-selector{gap:8px;}
 .hist-car-btn{padding:8px 14px;font-size:11px;}
@@ -397,8 +428,6 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .hist-bar{width:32px;}
 .hist-bar-label{font-size:9px;}
 .hist-edit-grid{grid-template-columns:1fr 1fr;}
-
-/* Admin */
 .admin-dashboard{padding:16px;}
 .admin-tabs{overflow-x:auto;gap:0;-webkit-overflow-scrolling:touch;}
 .admin-tab{padding:12px 14px;font-size:11px;white-space:nowrap;}
@@ -412,104 +441,29 @@ footer{background:var(--dark);border-top:1px solid var(--dark3);padding:48px 80p
 .admin-del-btn{font-size:11px;padding:8px 14px;}
 .admin-section-header{flex-wrap:wrap;gap:12px;}
 .admin-section-title{font-size:24px;}
-
-/* ===== MOBILE MESSAGES — full-screen conversation UX ===== */
-.messages-inbox{
-  display:block;
-  height:auto;
-  min-height:0;
-  border:none;
-  background:transparent;
-}
-
-/* List view: visible by default on mobile */
-.msg-list{
-  height:auto;
-  min-height:0;
-  max-height:none;
-  border-right:none;
-  border:1px solid var(--dark3);
-  background:var(--dark);
-  margin-bottom:2px;
-}
-
-/* Chat panel: hidden on mobile until a thread is selected */
-.msg-chat{
-  display:none;
-  min-height:0;
-  border:1px solid var(--dark3);
-  background:var(--dark);
-}
-.msg-chat.mobile-visible{
-  display:flex;
-  flex-direction:column;
-  min-height:calc(100vh - 64px - 120px);
-}
-
-/* Back button shown only on mobile */
-.mobile-msg-back{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 16px;
-  background:var(--dark2);
-  border:none;
-  border-bottom:1px solid var(--dark3);
-  color:var(--orange);
-  font-family:var(--font-cond);
-  font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  cursor:pointer;
-  width:100%;
-  text-align:left;
-  -webkit-tap-highlight-color:transparent;
-}
-
-/* Larger touch targets for message items */
-.msg-item{
-  padding:18px 16px;
-  min-height:72px;
-}
+.messages-inbox{display:block;height:auto;min-height:0;border:none;background:transparent;}
+.msg-list{height:auto;min-height:0;max-height:none;border-right:none;border:1px solid var(--dark3);background:var(--dark);margin-bottom:2px;}
+.msg-chat{display:none;min-height:0;border:1px solid var(--dark3);background:var(--dark);}
+.msg-chat.mobile-visible{display:flex;flex-direction:column;min-height:calc(100vh - 64px - 120px);}
+.mobile-msg-back{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--dark2);border:none;border-bottom:1px solid var(--dark3);color:var(--orange);font-family:var(--font-cond);font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;text-align:left;-webkit-tap-highlight-color:transparent;}
+.msg-item{padding:18px 16px;min-height:72px;}
 .msg-item-sender{font-size:15px;}
-
-/* Chat body sizing on mobile */
-.msg-chat.mobile-visible .msg-chat-body{
-  min-height:300px;
-  max-height:50vh;
-}
-
-/* Reply area stacked on mobile */
-.msg-reply-area{
-  flex-direction:column;
-  padding:12px 16px;
-  gap:10px;
-}
+.msg-chat.mobile-visible .msg-chat-body{min-height:300px;max-height:50vh;}
+.msg-reply-area{flex-direction:column;padding:12px 16px;gap:10px;}
 .msg-reply-input{width:100%;min-height:64px;}
 .msg-reply-send{width:100%;padding:14px;}
-
-/* Messages Panel */
 .msg-chat-header{padding:14px 16px;}
 .msg-chat-car-name{font-size:18px;}
 .msg-chat-body{padding:16px;}
-
-/* Contact modal */
 .contact-modal{align-items:flex-end;}
 .contact-modal-box{padding:28px 16px 32px;width:100%;margin:0;max-width:100%;border-radius:12px 12px 0 0;}
 .contact-modal-title{font-size:28px;}
 .thread-view.open{height:calc(100vh - 380px);min-height:240px;}
-
-/* Admin login */
 .admin-login-box{padding:36px 20px;}
-
-/* Footer */
 footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 .footer-bottom{padding:16px 20px;flex-direction:column;gap:6px;text-align:center;}
-
-/* Notification - bottom center on mobile */
 .notif{left:16px;right:16px;bottom:16px;text-align:center;}
 }
-
 @media(max-width:420px){
 .hero-title{font-size:clamp(40px,13vw,64px);}
 .hist-bar-group{min-width:32px;}
@@ -521,7 +475,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav id="main-nav">
   <a class="nav-logo" href="#" onclick="showPanel('home')">
     <div class="nav-logo-box">IG</div>
@@ -539,7 +492,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   </button>
 </nav>
 
-<!-- MOBILE NAV MENU -->
 <div class="nav-mobile-menu" id="nav-mobile-menu">
   <button class="nav-mobile-link active" id="mnav-home" onclick="showPanel('home');closeMobileMenu()">HOME</button>
   <button class="nav-mobile-link" id="mnav-cars" onclick="showPanel('cars');closeMobileMenu()">CARS</button>
@@ -548,10 +500,8 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   <button class="nav-mobile-link" onclick="showPanel('admin');closeMobileMenu()">⚙ ADMIN</button>
 </div>
 
-<!-- NOTIFICATION -->
 <div class="notif" id="notif"></div>
 
-<!-- ========== PANEL 1: HOME ========== -->
 <div class="panel active" id="panel-home">
   <section class="hero">
     <div class="hero-bg"></div>
@@ -649,7 +599,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   </div>
 </div>
 
-<!-- ========== PANEL 2: CARS ========== -->
 <div class="panel" id="panel-cars">
   <div class="cars-header">
     <div class="cars-title-row">
@@ -663,12 +612,10 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   <div id="cars-grid" class="cars-grid"></div>
 </div>
 
-<!-- Car Detail Modal -->
 <div class="modal-overlay" id="car-modal">
   <div class="modal-box" id="car-modal-content"></div>
 </div>
 
-<!-- ========== PANEL 3: NEWS ========== -->
 <div class="panel" id="panel-news">
   <div class="news-header">
     <div class="section-tag">Automotive World</div>
@@ -678,7 +625,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   <div id="news-grid" class="news-grid"></div>
 </div>
 
-<!-- Article Modal -->
 <div class="article-modal" id="article-modal">
   <div class="article-inner">
     <button class="article-close-btn" onclick="closeArticle()">← Back to News</button>
@@ -686,7 +632,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   </div>
 </div>
 
-<!-- ========== PANEL 4: HISTOGRAM ========== -->
 <div class="panel" id="panel-histogram">
   <div class="hist-header">
     <div class="section-tag">Market Pricing</div>
@@ -699,9 +644,7 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   </div>
 </div>
 
-<!-- ========== ADMIN PANEL ========== -->
 <div class="panel" id="panel-admin">
-  <!-- Login -->
   <div class="admin-login" id="admin-login-view">
     <div class="admin-login-box">
       <div class="admin-login-title">ADMIN</div>
@@ -715,7 +658,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
     </div>
   </div>
 
-  <!-- Dashboard -->
   <div class="admin-dashboard" id="admin-dashboard-view">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
       <h2 style="font-family:var(--font-display);font-size:40px;letter-spacing:3px;">ADMIN DASHBOARD</h2>
@@ -729,7 +671,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <button class="admin-tab" onclick="switchAdminTab('histogram',event)">HISTOGRAM</button>
     </div>
 
-    <!-- Cars Admin -->
     <div class="admin-panel-section active" id="admin-tab-cars">
       <div class="admin-section-header">
         <div class="admin-section-title">Manage Cars</div>
@@ -784,7 +725,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <div class="admin-list" id="admin-cars-list"></div>
     </div>
 
-    <!-- News Admin -->
     <div class="admin-panel-section" id="admin-tab-news">
       <div class="admin-section-header">
         <div class="admin-section-title">Manage News</div>
@@ -828,7 +768,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <div class="admin-list" id="admin-news-list"></div>
     </div>
 
-    <!-- Histogram Admin -->
     <div class="admin-panel-section" id="admin-tab-histogram">
       <div class="admin-section-header">
         <div class="admin-section-title">Edit Histograms</div>
@@ -837,7 +776,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <div id="admin-hist-edit-content"></div>
     </div>
 
-    <!-- Messages Admin -->
     <div class="admin-panel-section" id="admin-tab-messages">
       <div class="admin-section-header">
         <div class="admin-section-title">Inbox</div>
@@ -855,7 +793,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
   </div>
 </div>
 
-<!-- Contact Modal (public) -->
 <div class="contact-modal" id="contact-modal">
   <div class="contact-modal-box">
     <button class="contact-modal-close" onclick="closeContact()">✕</button>
@@ -863,7 +800,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
     <div class="contact-modal-car" id="contact-car-label"></div>
     <div class="contact-status" id="contact-status"></div>
 
-    <!-- Initial send form -->
     <div class="send-form" id="contact-send-form">
       <div class="form-group">
         <label class="form-label">Your Name</label>
@@ -876,7 +812,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
       <button class="btn-primary" style="width:100%;padding:14px;" onclick="sendContactMsg()">SEND MESSAGE</button>
     </div>
 
-    <!-- Thread view (after sending) -->
     <div class="thread-view" id="contact-thread-view">
       <div class="thread-messages" id="contact-thread-messages"></div>
       <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
@@ -888,7 +823,6 @@ footer{grid-template-columns:1fr;padding:40px 20px;gap:28px;}
 </div>
 
 <script>
-// ===== STATE =====
 let state = {
   cars: JSON.parse(localStorage.getItem('ig_cars') || '[]'),
   news: JSON.parse(localStorage.getItem('ig_news') || '[]'),
@@ -913,7 +847,6 @@ function save(){
   localStorage.setItem('ig_hist', JSON.stringify(state.histData));
 }
 
-// ===== MOBILE MENU =====
 function toggleMobileMenu(){
   const menu = document.getElementById('nav-mobile-menu');
   const btn = document.getElementById('nav-hamburger');
@@ -925,7 +858,6 @@ function closeMobileMenu(){
   document.getElementById('nav-hamburger').classList.remove('open');
 }
 
-// ===== NAVIGATION =====
 function showPanel(name){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
@@ -943,13 +875,11 @@ function showPanel(name){
   if(name==='admin' && adminLoggedIn) renderAdminCars();
 }
 
-// ===== HOME STATS =====
 function updateHomeStats(){
   const el = document.getElementById('stat-cars');
   if(el) el.textContent = state.cars.length;
 }
 
-// ===== NOTIFICATION =====
 function notify(msg){
   const n = document.getElementById('notif');
   n.textContent = msg;
@@ -957,7 +887,6 @@ function notify(msg){
   setTimeout(()=>n.classList.remove('show'),3000);
 }
 
-// ===== CARS PANEL =====
 function renderCars(){
   const grid = document.getElementById('cars-grid');
   if(!state.cars.length){
@@ -1041,7 +970,6 @@ function closeCarModal(){
   document.body.style.overflow='';
 }
 
-// ===== CONTACT / MESSENGER =====
 function openContact(carId){
   const car = state.cars.find(c=>c.id===carId);
   currentContactCar = car;
@@ -1128,7 +1056,6 @@ function closeContact(){
   document.body.style.overflow='';
 }
 
-// ===== NEWS PANEL =====
 function renderNews(){
   const grid = document.getElementById('news-grid');
   if(!state.news.length){
@@ -1175,7 +1102,6 @@ function closeArticle(){
   document.body.style.overflow='';
 }
 
-// ===== HISTOGRAM PANEL =====
 function renderHistogram(){
   const selector = document.getElementById('hist-selector');
   const content = document.getElementById('hist-content');
@@ -1243,7 +1169,6 @@ function showHistCar(carId){
   `;
 }
 
-// ===== ADMIN =====
 function adminLogin(){
   const pass = document.getElementById('admin-pass-input').value;
   if(pass==='BAHENI'){
@@ -1272,7 +1197,6 @@ function switchAdminTab(tab, e){
   document.querySelectorAll('.admin-panel-section').forEach(s=>s.classList.remove('active'));
   if(e && e.target) e.target.classList.add('active');
   else {
-    // fallback: find by text
     document.querySelectorAll('.admin-tab').forEach(t=>{
       if(t.textContent.trim().toLowerCase()===tab.toUpperCase()) t.classList.add('active');
     });
@@ -1282,7 +1206,6 @@ function switchAdminTab(tab, e){
   if(tab==='histogram') renderAdminHistogram();
 }
 
-// ===== MOBILE MESSAGES NAVIGATION =====
 function resetMobileMessageView(){
   if(!isMobile()) return;
   const chatView = document.getElementById('admin-chat-view');
@@ -1309,7 +1232,6 @@ function backToMsgList(){
   renderAdminMessages();
 }
 
-// Cars Admin
 function toggleCarForm(carId){
   const form = document.getElementById('car-post-form');
   const isOpen = form.classList.contains('open');
@@ -1445,7 +1367,6 @@ function deleteCar(id){
   notify('Car deleted.');
 }
 
-// News Admin
 function toggleNewsForm(){
   const form = document.getElementById('news-post-form');
   form.classList.toggle('open');
@@ -1533,7 +1454,6 @@ function deleteNews(id){
   notify('Article deleted.');
 }
 
-// Messages Admin
 function renderAdminMessages(){
   const list = document.getElementById('admin-msg-list');
   if(!state.messages.length){
@@ -1587,7 +1507,6 @@ function openAdminThread(threadId){
   const body = document.getElementById('admin-chat-body');
   if(body) body.scrollTop = body.scrollHeight;
 
-  // On mobile: hide list, show chat
   if(mobile) showMobileChat();
 }
 
@@ -1709,7 +1628,6 @@ function removeLastHistRange(carId){
   }
 }
 
-// ===== HELPERS =====
 function formatDate(iso){
   if(!iso) return '';
   try{ return new Date(iso).toLocaleDateString('id-ID',{year:'numeric',month:'long',day:'numeric'}); }
@@ -1721,7 +1639,6 @@ function formatTime(iso){
   catch(e){ return iso; }
 }
 
-// Close modals on overlay click
 document.getElementById('car-modal').addEventListener('click', function(e){
   if(e.target===this) closeCarModal();
 });
@@ -1729,7 +1646,6 @@ document.getElementById('contact-modal').addEventListener('click', function(e){
   if(e.target===this) closeContact();
 });
 
-// Reset mobile message view on resize
 window.addEventListener('resize', function(){
   if(!isMobile()){
     const chatView = document.getElementById('admin-chat-view');
@@ -1739,8 +1655,8 @@ window.addEventListener('resize', function(){
   }
 });
 
-// Init
 updateHomeStats();
 </script>
 </body>
 </html>
+```
